@@ -2,6 +2,8 @@ import os
 
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for, make_response)
+from msgraph import GraphServiceClient
+from msgraph.generated.models.subscription import Subscription
 
 app = Flask(__name__)
 
@@ -29,13 +31,11 @@ def hello():
 
 @app.route('/webhook', methods=['POST','GET'])
 def webhook():
-    data = request.form.get('name')
+    token = request.args.get('validationToken')
 
-    response = make_response(data, 200)
+    response = make_response(token, 200)
     response.mimetype = "text/plain"
     return response
     
-
-
 if __name__ == '__main__':
    app.run()
