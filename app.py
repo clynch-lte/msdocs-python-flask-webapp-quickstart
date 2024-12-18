@@ -27,7 +27,7 @@ def hello():
        print('Request for hello page received with no name or blank name -- redirecting')
        return redirect(url_for('index'))
 
-@app.route('/webhook')
+@app.route('/webhook', methods=['POST','GET'])
 def webhook():
     data = request.data
 
