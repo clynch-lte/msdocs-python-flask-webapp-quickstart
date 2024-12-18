@@ -29,11 +29,16 @@ def hello():
 
 @app.route('/webhook', methods=['POST','GET'])
 def webhook():
-    token = request.args.get('validationToken')
+    if (request.args.get('validationToken')):
+        token = request.args.get('validationToken')
+        print(token)
 
-    response = make_response(token, 200)
-    response.mimetype = "text/plain"
-    return response
+        response = make_response(token, 200)
+        response.mimetype = "text/plain"
+        return response
+    else:
+        print(request.json)
+        return('',200)
     
 if __name__ == '__main__':
    app.run()
