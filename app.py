@@ -1,7 +1,7 @@
 import os
 
 from flask import (Flask, redirect, render_template, request,
-                   send_from_directory, url_for)
+                   send_from_directory, url_for, make_response)
 
 app = Flask(__name__)
 
@@ -26,6 +26,15 @@ def hello():
    else:
        print('Request for hello page received with no name or blank name -- redirecting')
        return redirect(url_for('index'))
+
+@app.route('/webhook')
+def webhook():
+    data = request.data
+
+    response = make_response(data, 200)
+    response.mimetype = "text/plain"
+    return response
+    
 
 
 if __name__ == '__main__':
