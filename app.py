@@ -2,8 +2,6 @@ import os
 
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for, make_response)
-from msgraph import GraphServiceClient
-from msgraph.generated.models.subscription import Subscription
 
 app = Flask(__name__)
 
