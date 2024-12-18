@@ -38,7 +38,7 @@ def webhook():
         return response
     else:
         print(request.json)
-        return('',200)
+        return ('', 200)
     
 if __name__ == '__main__':
    app.run()
