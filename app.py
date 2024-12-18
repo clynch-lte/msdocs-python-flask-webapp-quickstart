@@ -1,7 +1,8 @@
 import os
 import logging
 from flask import (Flask, redirect, render_template, request,
-                   send_from_directory, url_for, make_response)
+                   send_from_directory, url_for, make_response,
+                   Response)
 
 app = Flask(__name__)
 
@@ -46,7 +47,7 @@ def webhook():
         return response
     else:
         print(request.json)
-        return ('', 204)
+        return Response(status_code=200)
     
 if __name__ == '__main__':
    app.run()
