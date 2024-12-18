@@ -1,13 +1,21 @@
 import os
-
+import logging
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for, make_response)
 
 app = Flask(__name__)
 
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
+else:
+    logging.basicConfig(level=logging.INFO)
+    app.logger.setLevel(logging.INFO)
 
 @app.route('/')
 def index():
+   app.logger.info('Hello world log entry')
    print('Request for index page received')
    return render_template('index.html')
 
