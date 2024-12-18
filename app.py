@@ -46,8 +46,8 @@ def webhook():
         response.mimetype = "text/plain"
         return response
     else:
-        print(request.json)
-        return Response(status_code=200)
+        # print(request.json)
+        return Response("Hello, World!", status=200)
     
 if __name__ == '__main__':
    app.run()
