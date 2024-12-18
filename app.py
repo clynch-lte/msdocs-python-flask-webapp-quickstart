@@ -29,7 +29,7 @@ def hello():
 
 @app.route('/webhook', methods=['POST','GET'])
 def webhook():
-    data = request.data
+    data = request
 
     response = make_response(data, 200)
     response.mimetype = "text/plain"
